@@ -1,0 +1,375 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "bairro": "Centro",
+        "ndvi": 0.12,
+        "aod": 0.7,
+        "gpi": 0.036,
+        "classificacao": "🔴 Crítico - Sem vegetação e poluição alta"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -46.606,
+              -23.556
+            ],
+            [
+              -46.596,
+              -23.556
+            ],
+            [
+              -46.596,
+              -23.548
+            ],
+            [
+              -46.606,
+              -23.548
+            ],
+            [
+              -46.606,
+              -23.556
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "bairro": "Jardim das Flores",
+        "ndvi": 0.45,
+        "aod": 0.3,
+        "gpi": 0.315,
+        "classificacao": "🟠 Moderado - Vegetação média, poluição leve"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -46.596,
+              -23.556
+            ],
+            [
+              -46.586,
+              -23.556
+            ],
+            [
+              -46.586,
+              -23.548
+            ],
+            [
+              -46.596,
+              -23.548
+            ],
+            [
+              -46.596,
+              -23.556
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "bairro": "Parque Verde",
+        "ndvi": 0.7,
+        "aod": 0.2,
+        "gpi": 0.56,
+        "classificacao": "🟢 Saudável - Vegetação densa e ar limpo"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -46.586,
+              -23.556
+            ],
+            [
+              -46.576,
+              -23.556
+            ],
+            [
+              -46.576,
+              -23.548
+            ],
+            [
+              -46.586,
+              -23.548
+            ],
+            [
+              -46.586,
+              -23.556
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "bairro": "Industrial",
+        "ndvi": 0.1,
+        "aod": 0.8,
+        "gpi": 0.02,
+        "classificacao": "🔴 Crítico - Alta poluição industrial"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -46.606,
+              -23.548
+            ],
+            [
+              -46.596,
+              -23.548
+            ],
+            [
+              -46.596,
+              -23.54
+            ],
+            [
+              -46.606,
+              -23.54
+            ],
+            [
+              -46.606,
+              -23.548
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "bairro": "Vila Nova",
+        "ndvi": 0.35,
+        "aod": 0.5,
+        "gpi": 0.175,
+        "classificacao": "🟠 Alerta - Pouca vegetação e poluição moderada"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -46.596,
+              -23.548
+            ],
+            [
+              -46.586,
+              -23.548
+            ],
+            [
+              -46.586,
+              -23.54
+            ],
+            [
+              -46.596,
+              -23.54
+            ],
+            [
+              -46.596,
+              -23.548
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "bairro": "Bosque Alto",
+        "ndvi": 0.68,
+        "aod": 0.25,
+        "gpi": 0.51,
+        "classificacao": "🟢 Saudável - Arborização exemplar"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -46.586,
+              -23.548
+            ],
+            [
+              -46.576,
+              -23.548
+            ],
+            [
+              -46.576,
+              -23.54
+            ],
+            [
+              -46.586,
+              -23.54
+            ],
+            [
+              -46.586,
+              -23.548
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "bairro": "Jardim Europa",
+        "ndvi": 0.55,
+        "aod": 0.35,
+        "gpi": 0.357,
+        "classificacao": "🟢 Saudável - Boa cobertura vegetal"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -46.606,
+              -23.54
+            ],
+            [
+              -46.596,
+              -23.54
+            ],
+            [
+              -46.596,
+              -23.532
+            ],
+            [
+              -46.606,
+              -23.532
+            ],
+            [
+              -46.606,
+              -23.54
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "bairro": "São Bento",
+        "ndvi": 0.25,
+        "aod": 0.6,
+        "gpi": 0.1,
+        "classificacao": "🟠 Alerta - Vegetação escassa"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -46.596,
+              -23.54
+            ],
+            [
+              -46.586,
+              -23.54
+            ],
+            [
+              -46.586,
+              -23.532
+            ],
+            [
+              -46.596,
+              -23.532
+            ],
+            [
+              -46.596,
+              -23.54
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "bairro": "Residencial Sol",
+        "ndvi": 0.42,
+        "aod": 0.25,
+        "gpi": 0.315,
+        "classificacao": "🟠 Moderado - Ar limpo, mas pouca vegetação"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -46.586,
+              -23.54
+            ],
+            [
+              -46.576,
+              -23.54
+            ],
+            [
+              -46.576,
+              -23.532
+            ],
+            [
+              -46.586,
+              -23.532
+            ],
+            [
+              -46.586,
+              -23.54
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "bairro": "Campo Verde",
+        "ndvi": 0.75,
+        "aod": 0.15,
+        "gpi": 0.637,
+        "classificacao": "🟢 Saudável - Alta vegetação e ar puro"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -46.596,
+              -23.532
+            ],
+            [
+              -46.586,
+              -23.532
+            ],
+            [
+              -46.586,
+              -23.524
+            ],
+            [
+              -46.596,
+              -23.524
+            ],
+            [
+              -46.596,
+              -23.532
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}
