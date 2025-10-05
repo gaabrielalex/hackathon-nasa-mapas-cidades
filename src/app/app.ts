@@ -20,10 +20,16 @@ import Feature from 'ol/Feature';
   styleUrls: ['./app.css']
 })
 export class App implements AfterViewInit {
+  private map!: Map;
+  private ndviLayer!: ImageLayer<any>;
+  private aodLayer!: ImageLayer<any>;
+  isNDVIVisible = true;
+  isAODVisible = false;
+
   constructor(private el: ElementRef) {}
 
   ngAfterViewInit(): void {
-    // 🗺️ Extent do NDVI
+    // 🗺️ Extent da área de São Paulo
     const extent: [number, number, number, number] = [
       -46.826929972940356,
       -24.00972175630451,
@@ -31,20 +37,33 @@ export class App implements AfterViewInit {
       -23.35619738710756
     ];
 
-    // 🌍 Base OSM
+    // 🌍 Camada base OSM
     const baseLayer = new TileLayer({
       source: new OSM()
     });
 
-    // 🌿 NDVI PNG (com transparência)
-    const ndviLayer = new ImageLayer({
+    // 🌿 NDVI (vegetação)
+    this.ndviLayer = new ImageLayer({
       source: new ImageStatic({
         url: 'NDVI_SP_RGB_2024_3_TRANSP.png',
         imageExtent: extent,
         projection: 'EPSG:4326',
         interpolate: true
       }),
-      opacity: 0.8
+      opacity: 0.8,
+      visible: true
+    });
+
+    // 🌫️ AOD (poluição atmosférica)
+    this.aodLayer = new ImageLayer({
+      source: new ImageStatic({
+        url: 'AOD_SP_RGB_2024_TRANSP.png',
+        imageExtent: extent,
+        projection: 'EPSG:4326',
+        interpolate: true
+      }),
+      opacity: 0.8,
+      visible: false
     });
 
     // 🧭 Distritos (GeoJSON)
@@ -65,9 +84,9 @@ export class App implements AfterViewInit {
     });
 
     // 🛰️ Cria o mapa
-    const map = new Map({
+    this.map = new Map({
       target: 'map',
-      layers: [baseLayer, ndviLayer, districtLayer],
+      layers: [baseLayer, this.ndviLayer, this.aodLayer, districtLayer],
       view: new View({
         projection: 'EPSG:3857',
         center: fromLonLat(getCenter(extent)),
@@ -75,7 +94,7 @@ export class App implements AfterViewInit {
       })
     });
 
-    // 🧾 Cria tooltip HTML dinâmica
+    // 🧾 Tooltip dinâmica
     const tooltip = document.createElement('div');
     tooltip.id = 'district-tooltip';
     tooltip.style.position = 'absolute';
@@ -91,8 +110,8 @@ export class App implements AfterViewInit {
     this.el.nativeElement.appendChild(tooltip);
 
     // 🔍 Atualiza tooltip no hover
-    map.on('pointermove', (evt) => {
-      const feature = map.forEachFeatureAtPixel(evt.pixel, (f) => f as Feature);
+    this.map.on('pointermove', (evt) => {
+      const feature = this.map.forEachFeatureAtPixel(evt.pixel, (f) => f as Feature);
       if (feature) {
         const nome = feature.get('nm_distrit');
         tooltip.innerText = nome;
@@ -103,5 +122,21 @@ export class App implements AfterViewInit {
         tooltip.style.opacity = '0';
       }
     });
+  }
+
+  // 🌿 Mostrar NDVI
+  showNDVI() {
+    this.ndviLayer.setVisible(true);
+    this.aodLayer.setVisible(false);
+    this.isNDVIVisible = true;
+    this.isAODVisible = false;
+  }
+
+  // 🌫️ Mostrar AOD
+  showAOD() {
+    this.ndviLayer.setVisible(false);
+    this.aodLayer.setVisible(true);
+    this.isNDVIVisible = false;
+    this.isAODVisible = true;
   }
 }

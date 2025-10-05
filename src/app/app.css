@@ -11,11 +11,45 @@ html, body {
   height: 100vh;
 }
 
-.ol-control {
-  font-family: "Segoe UI", Roboto, Arial, sans-serif;
+/* Botões flutuantes */
+.toolbar {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  z-index: 1000;
+  display: flex;
+  gap: 10px;
 }
 
-/* Evita que a tooltip apareça atrás do mapa */
+.toolbar button {
+  background: rgba(255, 255, 255, 0.9);
+  border: none;
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-family: "Segoe UI", Arial, sans-serif;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.toolbar button:hover {
+  transform: scale(1.05);
+}
+
+/* Estado ativo 🌿 NDVI */
+.toolbar button.active:nth-child(1) {
+  background: #2e7d32;
+  color: white;
+}
+
+/* Estado ativo 🌫️ AOD */
+.toolbar button.active:nth-child(2) {
+  background: #d84315;
+  color: white;
+}
+
+/* Tooltip */
 #district-tooltip {
   z-index: 1000;
 }
