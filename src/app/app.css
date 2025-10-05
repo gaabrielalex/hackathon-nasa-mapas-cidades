@@ -3,6 +3,7 @@ html, body {
   padding: 0;
   height: 100%;
   width: 100%;
+  overflow: hidden;
 }
 
 #map {
@@ -12,4 +13,9 @@ html, body {
 
 .ol-control {
   font-family: "Segoe UI", Roboto, Arial, sans-serif;
+}
+
+/* Evita que a tooltip apareça atrás do mapa */
+#district-tooltip {
+  z-index: 1000;
 }
