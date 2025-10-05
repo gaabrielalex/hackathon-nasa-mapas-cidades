@@ -4,7 +4,11 @@ import View from 'ol/View';
 import TileLayer from 'ol/layer/Tile';
 import ImageLayer from 'ol/layer/Image';
 import ImageStatic from 'ol/source/ImageStatic';
+import VectorLayer from 'ol/layer/Vector';
+import VectorSource from 'ol/source/Vector';
+import { Style, Stroke } from 'ol/style';
 import OSM from 'ol/source/OSM';
+import GeoJSON from 'ol/format/GeoJSON';
 import { fromLonLat } from 'ol/proj';
 import { getCenter } from 'ol/extent';
 
@@ -16,7 +20,7 @@ import { getCenter } from 'ol/extent';
 })
 export class App implements AfterViewInit {
   ngAfterViewInit(): void {
-    // 🗺️ Extent do NDVI (extraído do GeoTIFF original)
+    // 🗺️ Extent do NDVI (mesmo usado antes)
     const extent: [number, number, number, number] = [
       -46.826929972940356,
       -24.00972175630451,
@@ -24,29 +28,43 @@ export class App implements AfterViewInit {
       -23.35619738710756
     ];
 
-    // 🌍 Camada base do OpenStreetMap
+    // 🌍 Base OSM
     const baseLayer = new TileLayer({
       source: new OSM()
     });
 
-    // 🌿 Camada NDVI como imagem georreferenciada (PNG)
+    // 🌿 NDVI (imagem PNG georreferenciada)
     const ndviLayer = new ImageLayer({
       source: new ImageStatic({
-        url: 'NDVI_SP_RGB_2024_3_TRANSP.png', // ✅ caminho para o PNG
-        imageExtent: extent,                     // área real de São Paulo
-        projection: 'EPSG:4326',                 // mesmo CRS do GEE
-        interpolate: true                        // suaviza pixels
+        url: 'NDVI_SP_RGB_2024_3_TRANSP.png', // com transparência
+        imageExtent: extent,
+        projection: 'EPSG:4326',
+        interpolate: true
       }),
-      opacity: 0.5                              // transparência da camada NDVI
+      opacity: 0.8
     });
 
-    // 🛰️ Inicializa o mapa
+    // 🧭 Distritos municipais (GeoJSON)
+    const districtLayer = new VectorLayer({
+      source: new VectorSource({
+        url: 'Distritos_SP_GeoJSON.geojson', // seu arquivo GeoJSON
+        format: new GeoJSON()
+      }),
+      style: new Style({
+        stroke: new Stroke({
+          color: '#222222',
+          width: 1.3
+        })
+      })
+    });
+
+    // 🛰️ Cria o mapa
     new Map({
       target: 'map',
-      layers: [baseLayer, ndviLayer],
+      layers: [baseLayer, ndviLayer, districtLayer],
       view: new View({
-        projection: 'EPSG:3857',                 // reprojeta para o OSM
-        center: fromLonLat(getCenter(extent)),   // centraliza na RMSP
+        projection: 'EPSG:3857',
+        center: fromLonLat(getCenter(extent)),
         zoom: 9
       })
     });
