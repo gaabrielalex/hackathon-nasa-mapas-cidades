@@ -9,6 +9,7 @@ import GeoJSON from 'ol/format/GeoJSON';
 import { Fill, Stroke, Style } from 'ol/style';
 import Overlay from 'ol/Overlay';
 import { fromLonLat } from 'ol/proj';
+import Feature from 'ol/Feature';
 
 @Component({
   selector: 'app-root',
@@ -23,7 +24,7 @@ export class App implements AfterViewInit {
       source: new OSM()
     });
 
-    // 🎨 Função de cor por índice GPI
+    // 🎨 Função de cor pelo índice GPI
     const getColorByGPI = (gpi: number): string => {
       if (gpi < 0.1) return '#d73027';   // 🔴 crítico
       if (gpi < 0.3) return '#fc8d59';   // 🟠 alerta
@@ -31,15 +32,35 @@ export class App implements AfterViewInit {
       return '#1a9850';                  // 🟢 saudável
     };
 
-    // 🌿 Camada GeoJSON
+    // 🌿 Camada GeoJSON com cálculo automático de GPI
     const vector = new VectorLayer({
       source: new VectorSource({
-        url: 'greenpulse_mock.geojson',
+        url: 'NDVI_AOD_SP_Distritos.geojson',
         format: new GeoJSON()
       }),
       style: (feature) => {
-        const gpi = feature.get('gpi') ?? 0;
+        const realFeature = feature as Feature;
+        const ndvi = realFeature.get('NDVI') ?? 0;
+        const aod = realFeature.get('AOD') ?? 0;
+
+        // 🧮 Cálculo simplificado do GreenPulse Index
+        const gpi = ndvi * (1 - aod);
+
+        // Armazena o valor para uso no popup
+        realFeature.set('GPI', gpi);
+        realFeature.set(
+          'Classificacao',
+          gpi < 0.25
+            ? '🔴 Crítico - Poluição alta e vegetação escassa'
+            : gpi < 0.5
+            ? '🟠 Alerta - Condição moderada'
+            : gpi < 0.7
+            ? '🟡 Regular - Vegetação razoável'
+            : '🟢 Saudável - Boa vegetação e ar limpo'
+        );
+
         const color = getColorByGPI(gpi);
+
         return new Style({
           fill: new Fill({ color: color + '99' }),
           stroke: new Stroke({ color: '#333', width: 1 })
@@ -52,8 +73,8 @@ export class App implements AfterViewInit {
       target: 'map',
       layers: [base, vector],
       view: new View({
-        center: fromLonLat([-46.63, -23.55]),
-        zoom: 12
+        center: fromLonLat([-46.63, -23.55]), // São Paulo
+        zoom: 10
       })
     });
 
@@ -68,17 +89,19 @@ export class App implements AfterViewInit {
     });
     map.addOverlay(overlay);
 
-    // 🎯 Clique nos bairros → exibe popup
+    // 🎯 Clique nos distritos → exibe popup
     map.on('singleclick', (evt) => {
       const feature = map.forEachFeatureAtPixel(evt.pixel, (f) => f);
       if (feature) {
-        const props = feature.getProperties();
+        const f = feature as Feature;
+        const props = f.getProperties();
+
         popup.innerHTML = `
-          <b>${props['bairro']}</b><br>
-          🌿 NDVI: ${props['ndvi']}<br>
-          💨 AOD: ${props['aod']}<br>
-          🧮 GPI: ${props['gpi']}<br>
-          ${props['classificacao']}
+          <b>${props['NOME_DIST'] ?? 'Distrito'}</b><br>
+          🌿 NDVI: ${props['NDVI']?.toFixed(3) ?? '-'}<br>
+          💨 AOD: ${props['AOD']?.toFixed(3) ?? '-'}<br>
+          🧮 GPI: ${props['GPI']?.toFixed(3) ?? '-'}<br>
+          ${props['Classificacao']}
         `;
         overlay.setPosition(evt.coordinate);
       } else {
