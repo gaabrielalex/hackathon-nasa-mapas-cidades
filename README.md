@@ -1,59 +1,37 @@
-# Myapp
+# EcoMind - Visualizador de Dados Geoespaciais (MVP)
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.3.4.
+Este projeto é um protótipo de um visualizador de mapas interativo desenvolvido como parte da contribuição para a equipe EcoMind durante o **NASA Space Apps Challenge - Cuiabá**. A aplicação permite a análise de dados geoespaciais da cidade de São Paulo, focando em indicadores ambientais como o Índice de Vegetação por Diferença Normalizada (NDVI) e a Profundidade Óptica do Aerossol (AOD).
 
-## Development server
+## Sobre o Hackathon
 
-To start a local development server, run:
+O NASA Space Apps Challenge é um hackathon global que estimula o uso de dados da NASA em soluções criativas.
+Nesta edição em Cuiabá, a equipe desenvolveu o EcoMind, uma proposta voltada à análise ambiental urbana por meio de visualização geoespacial.
 
-```bash
-ng serve
-```
+### Links do Projeto EcoMind
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+- **Protótipo Interativo:** [Acesse o protótipo](https://ecomind-two.vercel.app/)
 
-## Code scaffolding
+## Funcionalidades do Mapa
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+- **Visualização de Camadas:** Alterne entre as camadas de dados de NDVI e AOD para comparar a vegetação e a qualidade do ar.
+- **Mapa Base:** Utiliza o OpenStreetMap como mapa base para contextualização geográfica.
+- **Delimitação de Distritos:** Exibe os limites dos distritos de São Paulo para uma análise mais detalhada.
+- **Interatividade:** O mapa é totalmente interativo, permitindo zoom e navegação.
 
-```bash
-ng generate component component-name
-```
+## Tecnologias Utilizadas
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+- **Frontend:** Angular v18+
+- **Mapeamento:** OpenLayers
+- **Estilo:** CSS nativo e moderno
 
-```bash
-ng generate --help
-```
+## Como Executar o Projeto
 
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+1.  **Instale as dependências:**
+    ```bash
+    npm install
+    ```
+2.  **Inicie o servidor de desenvolvimento:**
+    ```bash
+    ng serve
+    ```
+3.  Abra o navegador em `http://localhost:4200/`.
