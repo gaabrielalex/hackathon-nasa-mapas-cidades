@@ -7,9 +7,7 @@ Este projeto é um protótipo de um visualizador de mapas interativo desenvolvid
 O NASA Space Apps Challenge é um hackathon global que estimula o uso de dados da NASA em soluções criativas.
 Nesta edição em Cuiabá, a equipe desenvolveu o EcoMind, uma proposta voltada à análise ambiental urbana por meio de visualização geoespacial.
 
-### Links do Projeto EcoMind
-
-- **Protótipo Interativo:** [Acesse o protótipo](https://ecomind-two.vercel.app/)
+🔗 [Acesse o protótipo interativo](https://ecomind-two.vercel.app/)
 
 ## Funcionalidades do Mapa
 
